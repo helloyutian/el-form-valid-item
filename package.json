@@ -1,0 +1,21 @@
+{
+  "name": "el-form-valid-item",
+  "version": "1.0.0",
+  "description": "A form component with verification",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "homepage": "",
+  "keywords": ["elementUI", "Validate", "Form Valid Item"],
+  "author": "Mr.YT",
+  "license": "ISC",
+  "engines": {
+    "node": ">=8"
+  }
+}
