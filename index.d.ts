@@ -12,7 +12,7 @@ export interface RulesOptionsType {
     [key: string]: RuleItem
 }
 /** FormValidItem Component */
-class ElFormValidItem extends ComponentOptions {
+declare class ElFormValidItem extends ComponentOptions {
   // 安装组件
   static install (vue: typeof Vue): PluginFunction<never>
 
