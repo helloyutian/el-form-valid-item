@@ -1,4 +1,4 @@
-import Vue, { PluginFunction, ComponentOptions } from 'vue'
+import Vue, { PluginFunction } from 'vue'
 export interface ParamType {
     value: string|number
     field: string
@@ -12,7 +12,7 @@ export interface RulesOptionsType {
     [key: string]: RuleItem
 }
 /** FormValidItem Component */
-declare class ElFormValidItem extends ComponentOptions {
+declare class ElFormValidItem {
   // 安装组件
   static install (vue: typeof Vue): PluginFunction<never>
 

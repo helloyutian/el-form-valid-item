@@ -19,10 +19,10 @@ yarn add el-form-vaild-item --save
 // main.js
 import Vue from 'vue'
 import ElFormValidItem from 'el-form-valid-item'
-import ElFormRules from './elFormRules'
+import FormRules from './formRules'
 
 // 扩展自定义表单验证规则
-ElFormValidItem.extendRules(ElFormRules)
+ElFormValidItem.extendRules(FormRules)
 // 使用 ElFormRuleItem
 Vue.use(ElFormValidItem)
 
@@ -133,7 +133,7 @@ export default {
 ## Extend Rules 自定义检验规则
 
 ```` javascript
-// elFormRules.js 自定义规则
+// formRules.js 自定义规则
 /** 
  * // 规则格式
  * 规则名称: {
@@ -155,15 +155,15 @@ export default {
         validate: ({ value }) => value !== '' && !/^(-)?\d+$/.test(value),
         getMessage: ({ field }) => `${field}必须是整数`
     }
-    // 可单独提交一个属性来覆盖原来的规则的某个属性
+    // 可单独提交一个属性来覆盖原来的规则的某个属，可根据需要传入参数返回不同提示
     required: {
-        getMessage: ({ field }) => `请选择${field}`
+        getMessage: ({ field, data }) => data === '1' ? `${field}不能为空` : `请选择${field}`
     }
 }
 
 ````
 
-* param 参数
+* `validate(param)` `getMessage(param)` 的 param 参数
 
   | 字段  | 说明                         |
   | ----- | ---------------------------- |
