@@ -1,6 +1,6 @@
 {
   "name": "el-form-valid-item",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A form component with verification for ElementUI",
   "main": "index.js",
   "typings": "./index.d.ts",
@@ -15,9 +15,6 @@
     "element-ui": "*",
     "vue": "2.x"
   },
-  "files": [
-      "src"
-  ],
   "bugs": "https://github.com/helloyutian/el-form-valid-item/issues",
   "homepage": "",
   "keywords": ["elementUI", "Validate", "Form Valid Item", "表单验证"],
