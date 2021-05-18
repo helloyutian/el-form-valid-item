@@ -3306,10 +3306,10 @@ ejs@^2.6.1:
   resolved "https://registry.nlark.com/ejs/download/ejs-2.7.4.tgz#48661287573dcc53e366c7a1ae52c3a120eec9ba"
   integrity sha1-SGYSh1c9zFPjZsehrlLDoSDuybo=
 
-el-form-valid-item@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.nlark.com/el-form-valid-item/download/el-form-valid-item-1.0.1.tgz#83483f1146cb455f0924fb4741b29762ed729b34"
-  integrity sha1-g0g/EUbLRV8JJPtHQbKXYu1ymzQ=
+el-form-valid-item@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.nlark.com/el-form-valid-item/download/el-form-valid-item-1.0.4.tgz#b1aa65746032a5c2747bf1182f36dbb6adf77468"
+  integrity sha1-sapldGAypcJ0e/EYLzbbtq33dGg=
 
 electron-to-chromium@^1.3.719:
   version "1.3.723"
