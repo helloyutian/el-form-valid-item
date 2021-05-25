@@ -152,10 +152,14 @@ export default {
 export default {
     // 整数校验
     int: {
-        validate: ({ value }) => value !== '' && !/^(-)?\d+$/.test(value),
+        validate: ({ value }) => !/^(-)?\d+$/.test(value),
         getMessage: ({ field }) => `${field}必须是整数`
     }
-    // 可单独提交一个属性来覆盖原来的规则的某个属，可根据需要传入参数返回不同提示
+    // 可单独提交一个属性来覆盖原来的规则的某个属
+    required: {
+        getMessage: ({ field }) => `请选择${field}`
+    }
+    // 可自定义参数，根据不同参数返回不同的结果
     required: {
         getMessage: ({ field, data }) => data === '1' ? `${field}不能为空` : `请选择${field}`
     }
@@ -171,6 +175,16 @@ export default {
   | field | 字段名称                     |
   | data  | 规则上带的参数(冒号后的内容) |
 
+
+
+## TS类
+
+`el-form-valid-item` 会向外抛出三个类型，需要的时候可以直接导入使用
+
+```javascript
+imort { FormRuleType, FormRuleItemType, FormRuleParamType } from 'el-form-valid-item'
+
+```
 
 
 ## Form-Valid-Item Attributes

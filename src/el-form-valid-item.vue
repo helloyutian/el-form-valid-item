@@ -47,6 +47,7 @@ export default {
     computed: {
         validRule() {
             const arr = !this.rules ? [] : typeof this.rules === 'string' ? this.rules.split('|') : this.rules
+            this.required && arr.indexOf('required') === -1 && arr.unshift('required')
             return arr.map(item => {
                 return { validator: getValidator(item, this.field), trigger: this.trigger }
             })

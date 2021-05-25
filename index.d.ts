@@ -1,15 +1,15 @@
 import Vue, { PluginFunction } from 'vue'
-export interface ParamType {
+export interface FormRuleParamType {
     value: string|number
     field: string
     data?: string
 }
-export interface RuleItem {
-    validate (param: ParamType): Boolean
-    getMessage (param: ParamType): String
+export interface FormRuleItemType {
+    validate (param: FormRuleParamType): Boolean
+    getMessage (param: FormRuleParamType): String
 }
-export interface RulesOptionsType {
-    [key: string]: RuleItem
+export interface FormRuleType {
+    [key: string]: FormRuleItemType
 }
 /** FormValidItem Component */
 declare class ElFormValidItem {
@@ -17,7 +17,7 @@ declare class ElFormValidItem {
   static install (vue: typeof Vue): PluginFunction<never>
 
   /** 自定义规则 */
-  static extendRules (RulesOptions: RulesOptionsType): void
+  static extendRules (RulesOptions: FormRuleType): void
 }
 
 export default ElFormValidItem
