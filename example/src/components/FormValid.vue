@@ -12,11 +12,11 @@
                     </el-option>
                 </el-select>
             </el-form-valid-item>
-            <el-form-valid-item label="输入框1：" prop="iptVal1" required field="用户名" rules="required|maxLen:8" label-width="90px">
-                <el-input v-model="formData.iptVal1" placeholder="请输入"></el-input>
+            <el-form-valid-item label="用户名：" prop="iptVal1" required field="用户名" rules="required|maxLen:8" label-width="90px">
+                <el-input v-model="formData.iptVal1" placeholder="请输入用户名，最长8位"></el-input>
             </el-form-valid-item>
-            <el-form-valid-item label="输入框2：" prop="iptVal2" required :rules="['required', 'number']" label-width="90px">
-                <el-input v-model="formData.iptVal2" placeholder="请输入"></el-input>
+            <el-form-valid-item label="年龄：" prop="iptVal2" required field="年龄" :rules="['required', 'number']" label-width="90px">
+                <el-input v-model="formData.iptVal2" placeholder="请输入数字"></el-input>
             </el-form-valid-item>
             <el-form-valid-item label-width="90px" style="text-align:left;">
                 <el-button type="success" @click="submitForm('myForm')">提交</el-button>
@@ -30,34 +30,36 @@
 export default {
   name: 'FormValid',
   props: {
-    msg: String
+    msg: Object
   },
   data () {
       return {
+        count: 0,
         formData: {
             iptVal1: '',
             iptVal2: '',
             selectVal: ''
         },
         options: [{
-          value: '选项1',
+          value: '1',
           label: '黄金糕'
         }, {
-          value: '选项2',
+          value: '2',
           label: '双皮奶'
         }, {
-          value: '选项3',
+          value: '3',
           label: '蚵仔煎'
         }, {
-          value: '选项4',
+          value: '4',
           label: '龙须面'
         }, {
-          value: '选项5',
+          value: '5',
           label: '北京烤鸭'
         }]
       }
   },
   created () {
+      console.log('created')
     //   this.formData.iptVal = this.msg
   },
   methods: {

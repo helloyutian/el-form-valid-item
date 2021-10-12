@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "el-form-valid-item": "^1.0.5",
     "element-ui": "^2.15.1",
+    "el-form-valid-item": "^1.0.7",
     "vue": "^2.6.11"
   },
   "devDependencies": {

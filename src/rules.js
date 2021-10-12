@@ -1,6 +1,4 @@
-import Vue from 'vue'
-
-Vue.prototype.$formConditions = {
+const formConditions = {
     required: {
         validate: ({ value }) => value === '' || value === undefined || value === null || value.length === 0 || /^\s+$/.test(String(value)),
         getMessage: ({ field }) => `${field}不能为空`
@@ -19,9 +17,19 @@ Vue.prototype.$formConditions = {
     }
 }
 
+export const setRules = (rules) => {
+    for (let key in rules) {
+        if (!formConditions[key]) {
+            formConditions[key] = rules[key]
+        } else {
+            Object.assign(formConditions[key], rules[key])
+        }
+    }
+}
+
 export const getValidator = (item, field) => {
     const [ruleName, data] = item.split(':')
-    const formConditions = Vue.prototype.$formConditions
+    // const formConditions = Vue.prototype.$formConditions
     if (!formConditions[ruleName]) {
         throw new Error('The rule for "' + ruleName + '" is not defined')
     }
