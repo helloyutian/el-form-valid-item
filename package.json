@@ -1,6 +1,6 @@
 {
   "name": "el-form-valid-item",
-  "version": "1.0.7",
+  "version": "3.0.1",
   "description": "A form component with verification for ElementUI",
   "main": "index.js",
   "typings": "./index.d.ts",
@@ -12,8 +12,8 @@
     "url": "https://github.com/helloyutian/el-form-valid-item"
   },
   "peerDependencies": {
-    "element-ui": "*",
-    "vue": "2.x"
+    "element-plus": "*",
+    "vue": "3.x"
   },
   "bugs": "https://github.com/helloyutian/el-form-valid-item/issues",
   "homepage": "",

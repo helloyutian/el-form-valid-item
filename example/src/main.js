@@ -1,15 +1,18 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-import ElFormValidItem from 'el-form-valid-item'
+// 引入element plus
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+// 引入 ElFormRuleItem
+import ElFormRuleItem from '@/components/el-form-valid-item'
 import FormRules from './formRules'
+// 扩展校验规则
+ElFormRuleItem.extendRules(FormRules)
 
-Vue.config.productionTip = false
-Vue.use(ElementUI)
-ElFormValidItem.extendRules(FormRules)
-Vue.use(ElFormValidItem)
+const app = createApp(App)
+// 注册 ElFormRuleItem 组件
+app.component(ElFormRuleItem.name, ElFormRuleItem)
+// 全局引入 ElementPlus组件
+app.use(ElementPlus)
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+app.mount('#app')

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <el-form ref="myForm" :model="formData">
-            <el-form-valid-item label="选择框：" prop="selectVal" required rules="required" label-width="90px">
+            <el-form-valid-item label="选择框：" prop="selectVal" required label-width="90px">
                 <el-select v-model="formData.selectVal" clearable style="width:100%;">
                     <el-option
                         v-for="item in options"
@@ -12,10 +12,10 @@
                     </el-option>
                 </el-select>
             </el-form-valid-item>
-            <el-form-valid-item label="用户名：" prop="iptVal1" required field="用户名" rules="required|maxLen:8" label-width="90px">
-                <el-input v-model="formData.iptVal1" placeholder="请输入用户名，最长8位"></el-input>
+            <el-form-valid-item label="用户名：" prop="iptVal1" rules="required|maxLen:8" label-width="90px">
+                <el-input v-model="formData.iptVal1" placeholder="请输入用户名，最多8位"></el-input>
             </el-form-valid-item>
-            <el-form-valid-item label="年龄：" prop="iptVal2" required field="年龄" :rules="['required', 'number']" label-width="90px">
+            <el-form-valid-item label="年龄：" prop="iptVal2" :rules="['required', 'number']" label-width="90px">
                 <el-input v-model="formData.iptVal2" placeholder="请输入数字"></el-input>
             </el-form-valid-item>
             <el-form-valid-item label-width="90px" style="text-align:left;">
