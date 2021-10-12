@@ -1,14 +1,15 @@
 # Form Valid Item 带验证表单组件
 
-这是一个简答好用的带验证的表单组件，基于elementUI的form-item组件的重新封装，可直接替代elementUI的`<el-form-item>` 组件，目的是让表单验证变得更简单好用
+这是一款基于ElementUI开发的带验证的表单组件，主要是对`form-item`的重新封装，可直接替代ElementUI的`<el-form-item>` 组件，主要是让表单验证使用起来更简答
 
 
 ## Install 安装
 
-```
+```sh
 npm install el-form-vaild-item --save
-// or
+# or
 yarn add el-form-vaild-item --save
+
 ```
 
 
