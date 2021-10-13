@@ -1,6 +1,6 @@
 {
   "name": "el-form-valid-item",
-  "version": "3.0.1",
+  "version": "2.0.1",
   "description": "A form component with verification for ElementUI",
   "main": "index.js",
   "typings": "./index.d.ts",
