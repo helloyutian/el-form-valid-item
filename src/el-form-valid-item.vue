@@ -40,7 +40,7 @@ export default {
         validator: Function
     },
     setup(props) {
-        let fieldName = !props.field && props.label ? props.label.replace(/[:：]$/, '') : ''
+        let fieldName = props.field || (props.label ? props.label.replace(/[:：]$/, '') : '')
         return {
             fieldName
         }
