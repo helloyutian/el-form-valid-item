@@ -29,7 +29,6 @@ export const setRules = (rules) => {
 
 export const getValidator = (item, field) => {
     const [ruleName, data] = item.split(':')
-    // const formConditions = Vue.prototype.$formConditions
     if (!formConditions[ruleName]) {
         throw new Error('The rule for "' + ruleName + '" is not defined')
     }

@@ -30,13 +30,7 @@ export default {
         },
         inlineMessage: [String, Boolean],
         size: String,
-        field: {
-            type: String,
-            default() {
-                const name = this.label ? this.label.replace(/[:：]$/, '') : ''
-                return name
-            }
-        },
+        field: String,
         trigger: {
             type: [String, Array],
             default() {
@@ -45,13 +39,17 @@ export default {
         },
         validator: Function
     },
+    setup(props) {
+        let fieldName = props.field || (props.label ? props.label.replace(/[:：]$/, '') : '')
+        return {
+            fieldName
+        }
+    },
     computed: {
         validRule() {
             const arr = !this.rules ? [] : typeof this.rules === 'string' ? this.rules.split('|') : this.rules
             this.required && arr.indexOf('required') === -1 && arr.unshift('required')
-            const ruleList = arr.map(item => {
-                return { validator: getValidator(item, this.field), trigger: this.trigger }
-            })
+            const ruleList = arr.map(item => ({ validator: getValidator(item, this.fieldName), trigger: this.trigger }))
             typeof this.validator === 'function' && ruleList.push({ validator: this.validator, trigger: this.trigger })
             return ruleList
         }

@@ -1,17 +1,14 @@
 <template>
-  <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <form-valid />
-  </div>
+  <ValidForm />
 </template>
 
 <script>
-import FormValid from './components/FormValid.vue'
+import ValidForm from './components/ValidForm.vue';
 
 export default {
   name: 'App',
   components: {
-    FormValid
+    ValidForm
   }
 }
 </script>
