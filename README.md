@@ -1,8 +1,12 @@
 # Form Valid Item 带验证表单组件
 
+
+
 这是一款基于VUE3 + Element Puls开发封装表单验证组件，可直接替代Element的`<el-form-item>` 组件，主要是想让表单验证使用起来更简单方便。
 
 VUE2 + ElementUI的请选择安装 [el-form-valid-item@1.x](https://www.npmjs.com/package/el-form-valid-item/v/1.0.7) 版本
+
+
 
 
 ## Install 安装
@@ -60,7 +64,54 @@ Vue.use(ElFormValidItem)
 
 参数使用  **规则名称:参数**
 
-如字段长度不能超过8位 `rules="maxLen:8"` 
+如字段长度不能大于8位 `rules="maxLen:8"` 
+
+
+
+## Extend Rules 自定义检验规则
+
+```` javascript
+// formRules.js 自定义规则
+/** 
+ * // 规则格式
+ * 规则名称: {
+ * validate(param) { return true or false }
+ * getMessage(param) { return '提示内容' }
+ * 
+ * // 参数说明
+ * param {
+ *  value: '', // 输入框的值
+ *  field: '', // 字段名称
+ *  data: '' // 规则上带的参数(冒号后的内容)
+ * }
+ * 
+* } */
+
+export default {
+    // 整数校验
+    int: {
+        validate: ({ value }) => !/^(-)?\d+$/.test(value),
+        getMessage: ({ field }) => `${field}必须是整数`
+    }
+    // 可单独提交一个属性来覆盖原来的规则的某个属
+    required: {
+        getMessage: ({ field }) => `请选择${field}`
+    }
+    // 可自定义参数，根据不同参数返回不同的结果
+    required: {
+        getMessage: ({ field, data }) => data === '1' ? `${field}不能为空` : `请选择${field}`
+    }
+}
+
+````
+
+* `validate(param)` `getMessage(param)` 的 param 参数
+
+  | 字段  | 说明                         |
+  | ----- | ---------------------------- |
+  | value | 检验的内容（如输入框的值）   |
+  | field | 字段名称                     |
+  | data  | 规则上带的参数(冒号后的内容) |
 
 
 
@@ -134,7 +185,38 @@ export default {
 </script>
 ```
 
-### 修改输入框名称
+
+
+## TS类
+
+`el-form-valid-item` 会向外抛出三个类型，需要的时候可以直接导入使用
+
+```javascript
+imort { FormRuleType, FormRuleItemType, FormRuleParamType } from 'el-form-valid-item'
+
+```
+
+
+## Form-Valid-Item Attributes  属性
+
+|参数|描述|类型|可选值|默认值|
+|----|---|----|-----|------|
+| <font color="red">rules</font> | 表单验证规则，需带参数的话请用`:`隔开，如`规则名称:参数`，多个规则可用竖线隔开或者用数组方式传入 | string / array | -- | [] |
+| <font color="red">validator</font> | 自定义检验函数，可参考 [async-validator](https://github.com/yiminghe/async-validator) | function | -- | -- |
+| <font color="red">field</font> | 字段名称，验证提示消息用到 | string | -- | label的值（去除末尾的冒号） |
+| <font color="red">trigger</font> | 触发类型，多个类型用数组方式传入 | string / array | -- | ['blur', 'change'] |
+| prop | 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 | string | 传入 Form 组件的 `model` 中的字段 | -- |
+| label | 标签文本 | string | -- | -- |
+| label-width | 表单域标签的的宽度，例如 '50px'。支持 `auto`。 | string | -- | -- |
+| required | 是否必填，如不设置，则会根据校验规则自动生成 | boolean | -- | false |
+| error | 表单域验证错误信息, 设置该值会使表单验证状态变为`error`，并显示该错误信息 | string | -- | -- |
+| show-message | 是否显示校验错误信息 | boolean | -- | true |
+| inline-message | 以行内形式展示校验信息 | boolean | -- | false |
+| size | 用于控制该表单域下组件的尺寸 | string | medium / small / mini | -- |
+
+
+
+#### Field 修改输入框名称
 
 可以通过`field`属性来修改输入框名称，不传`field`时，会使用label的值来做输入框名称
 
@@ -155,7 +237,9 @@ export default {
 
 ```
 
-### 修改触发方式
+
+
+#### Trigger 修改触发方式
 
 可以通过`trigger`属性来修改触发校验的方式，多个触发方式用数字的方式传递（如：['blur', 'change']），默认['blur', 'change']
 
@@ -171,7 +255,9 @@ export default {
 
 ```
 
-### 自定义专属校验规则
+
+
+#### Validator 自定义专属校验规则
 
 可通过 `validator` 属性增加专属校验规则，默认先校验 `rules` 的规则再校验 `validator`
 
@@ -207,78 +293,3 @@ export default {
 
 ```
 
-
-
-## Extend Rules 自定义检验规则
-
-```` javascript
-// formRules.js 自定义规则
-/** 
- * // 规则格式
- * 规则名称: {
- * validate(param) { return true or false }
- * getMessage(param) { return '提示内容' }
- * 
- * // 参数说明
- * param {
- *  value: '', // 输入框的值
- *  field: '', // 字段名称
- *  data: '' // 规则上带的参数(冒号后的内容)
- * }
- * 
-* } */
-
-export default {
-    // 整数校验
-    int: {
-        validate: ({ value }) => !/^(-)?\d+$/.test(value),
-        getMessage: ({ field }) => `${field}必须是整数`
-    }
-    // 可单独提交一个属性来覆盖原来的规则的某个属
-    required: {
-        getMessage: ({ field }) => `请选择${field}`
-    }
-    // 可自定义参数，根据不同参数返回不同的结果
-    required: {
-        getMessage: ({ field, data }) => data === '1' ? `${field}不能为空` : `请选择${field}`
-    }
-}
-
-````
-
-* `validate(param)` `getMessage(param)` 的 param 参数
-
-  | 字段  | 说明                         |
-  | ----- | ---------------------------- |
-  | value | 检验的内容（如输入框的值）   |
-  | field | 字段名称                     |
-  | data  | 规则上带的参数(冒号后的内容) |
-
-
-
-## TS类
-
-`el-form-valid-item` 会向外抛出三个类型，需要的时候可以直接导入使用
-
-```javascript
-imort { FormRuleType, FormRuleItemType, FormRuleParamType } from 'el-form-valid-item'
-
-```
-
-
-## Form-Valid-Item Attributes
-
-|参数|描述|类型|可选值|默认值|
-|----|---|----|-----|------|
-| <font color="red">rules</font> | 表单验证规则，多个规则可用`|`隔开或者用数组方式传入 | string / array | -- | [] |
-| <font color="red">validator</font> | 自定义检验函数，可参考 [async-validator](https://github.com/yiminghe/async-validator) | function | -- | -- |
-| <font color="red">field</font> | 字段名称，验证提示消息用到 | string | -- | label的值 |
-| <font color="red">trigger</font> | 触发类型，多个类型用数组方式传入 | string / array | -- | ['blur', 'change'] |
-| prop | 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 | string | 传入 Form 组件的 `model` 中的字段 | -- |
-| label | 标签文本 | string | -- | -- |
-| label-width | 表单域标签的的宽度，例如 '50px'。支持 `auto`。 | string | -- | -- |
-| required | 是否必填，如不设置，则会根据校验规则自动生成 | boolean | -- | false |
-| error | 表单域验证错误信息, 设置该值会使表单验证状态变为`error`，并显示该错误信息 | string | -- | -- |
-| show-message | 是否显示校验错误信息 | boolean | -- | true |
-| inline-message | 以行内形式展示校验信息 | boolean | -- | false |
-| size | 用于控制该表单域下组件的尺寸 | string | medium / small / mini | -- |
